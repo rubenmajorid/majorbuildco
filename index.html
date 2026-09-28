@@ -78,8 +78,8 @@
   <div class="wrap">
     <div class="head reveal">
       <p class="eyebrow" data-i18n="svc.eyebrow">What we do</p>
-      <h2 data-i18n="svc.title">Dream. Design. Build. Develop.</h2>
-      <p class="sub" data-i18n="svc.sub">From the first wall to the last board of siding — one crew, one standard.</p>
+      <h2 data-i18n="svc.title">From plans to finished home.</h2>
+      <p class="sub" data-i18n="svc.sub">We work alongside homeowners, architects, engineers and builders to take residential projects from approved plans to completion — one crew, one standard.</p>
     </div>
     <div class="services">
       <article class="svc reveal">
@@ -222,9 +222,33 @@
           <option data-i18n="f.other">Other</option>
         </select>
       </label>
+      <div class="row">
+        <label><span data-i18n="f.loc">Project location (city)</span><input name="loc" autocomplete="address-level2"></label>
+        <label><span data-i18n="f.size">Approx. size (sq ft)</span><input name="size" inputmode="numeric"></label>
+      </div>
+      <div class="row">
+        <label><span data-i18n="f.start">Desired start</span>
+          <select name="start">
+            <option data-i18n="f.s1">As soon as possible</option>
+            <option data-i18n="f.s2">In 1–3 months</option>
+            <option data-i18n="f.s3">In 3–6 months</option>
+            <option data-i18n="f.s4">6+ months</option>
+            <option data-i18n="f.s5">Just planning</option>
+          </select>
+        </label>
+        <label><span data-i18n="f.budget">Estimated budget</span>
+          <select name="budget">
+            <option data-i18n="f.b0">Not sure yet</option>
+            <option>Under $50,000</option>
+            <option>$50,000 – $150,000</option>
+            <option>$150,000 – $500,000</option>
+            <option>$500,000+</option>
+          </select>
+        </label>
+      </div>
       <label><span data-i18n="f.msg">Tell us about your project</span><textarea name="msg" rows="4"></textarea></label>
       <button class="btn btn--gold btn--full" type="submit" data-i18n="f.send">Request my estimate</button>
-      <p class="form__note" data-i18n="f.note">Opens your email app, addressed to estimates@majorbuildco.com</p>
+      <p class="form__note" data-i18n="f.note">Opens your email app, addressed to estimates@majorbuildco.com. Have plans or drawings? Attach them to that email.</p>
     </form>
   </div>
 </section>

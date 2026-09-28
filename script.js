@@ -24,8 +24,8 @@ const I18N = {
     'hero.t1':'Construimos','hero.t2':'diferente.',
     'hero.lead':'Desde el primer boceto hasta la entrega final, hacemos el framing, siding y acabados de casas a medida con calidad, integridad y oficio que duran generaciones.',
     'tag.1':'En obra','tag.2':'A tiempo','tag.3':'Bien hecho',
-    'svc.eyebrow':'Lo que hacemos','svc.title':'Soñar. Diseñar. Construir. Desarrollar.',
-    'svc.sub':'Desde la primera pared hasta la última tabla de siding — un solo equipo, un solo estándar.',
+    'svc.eyebrow':'Lo que hacemos','svc.title':'De los planos a la casa terminada.',
+    'svc.sub':'Trabajamos junto a dueños, arquitectos, ingenieros y constructores para llevar proyectos residenciales desde los planos aprobados hasta su terminación — un solo equipo, un solo estándar.',
     'svc.1.t':'Framing','svc.1.d':'Todo el esqueleto estructural de tu casa: paredes, sistema de piso, segundo piso, techos y trusses, sheathing ZIP System, aberturas y blocking — según planos e ingeniería.',
     'svc.2.t':'Siding y exteriores','svc.2.d':'Siding de madera, revestimientos, soffits y molduras instalados con líneas limpias y detalles precisos que protegen tu casa y la hacen destacar.',
     'svc.3.t':'Madera interior y acabados','svc.3.d':'Paneles de madera, paredes decorativas y carpintería de acabado que le dan calidez y carácter al interior.',
@@ -52,7 +52,9 @@ const I18N = {
     'ct.office':'Oficina principal','ct.estimates':'Presupuestos','ct.projects':'Proyectos nuevos','ct.billing':'Facturación',
     'f.name':'Nombre','f.phone':'Teléfono','f.email':'Correo','f.type':'Tipo de proyecto','f.other':'Otro',
     'f.msg':'Cuéntanos sobre tu proyecto','f.send':'Solicitar presupuesto',
-    'f.note':'Abre tu app de correo, dirigido a estimates@majorbuildco.com',
+    'f.note':'Abre tu app de correo, dirigido a estimates@majorbuildco.com. ¿Tienes planos? Adjúntalos a ese correo.',
+    'f.loc':'Ubicación del proyecto (ciudad)','f.size':'Tamaño aprox. (sq ft)','f.start':'¿Cuándo quieres empezar?','f.budget':'Presupuesto estimado',
+    'f.s1':'Lo antes posible','f.s2':'En 1–3 meses','f.s3':'En 3–6 meses','f.s4':'En 6+ meses','f.s5':'Solo estoy planeando','f.b0':'Aún no sé',
     'foot.tag':'Construyendo hoy un mañana mejor.',
     'foot.privacy':'Política de privacidad','foot.terms':'Términos de uso','foot.rights':'Todos los derechos reservados.'
   }
@@ -137,7 +139,7 @@ $('#form').addEventListener('submit', e => {
   ['name', 'email'].forEach(n => { const bad = !d[n] || (n === 'email' && !/\S+@\S+\.\S+/.test(d[n])); f[n].classList.toggle('err', bad); if (bad) ok = false; });
   if (!ok) return;
   const subject = `Estimate request — ${d.type} — ${d.name}`;
-  const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nProject type: ${d.type}\n\n${d.msg}`;
+  const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nProject type: ${d.type}\nLocation: ${d.loc}\nApprox. size: ${d.size} sq ft\nDesired start: ${d.start}\nBudget: ${d.budget}\n\n${d.msg}\n\n(Plans attached: yes / no)`;
   location.href = `mailto:estimates@majorbuildco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
