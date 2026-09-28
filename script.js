@@ -53,7 +53,8 @@ const I18N = {
     'f.name':'Nombre','f.phone':'Teléfono','f.email':'Correo','f.type':'Tipo de proyecto','f.other':'Otro',
     'f.msg':'Cuéntanos sobre tu proyecto','f.send':'Solicitar presupuesto',
     'f.note':'Abre tu app de correo, dirigido a estimates@majorbuildco.com',
-    'foot.tag':'Construyendo hoy un mañana mejor.'
+    'foot.tag':'Construyendo hoy un mañana mejor.',
+    'foot.privacy':'Política de privacidad','foot.terms':'Términos de uso','foot.rights':'Todos los derechos reservados.'
   }
 };
 
@@ -139,6 +140,11 @@ $('#form').addEventListener('submit', e => {
   const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nProject type: ${d.type}\n\n${d.msg}`;
   location.href = `mailto:estimates@majorbuildco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
+
+// botón subir
+const toTop = $('#toTop');
+addEventListener('scroll', () => toTop.classList.toggle('show', scrollY > 700), { passive: true });
+toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
 $('#yr').textContent = new Date().getFullYear();
 if (lang !== 'en') setLang(lang);
