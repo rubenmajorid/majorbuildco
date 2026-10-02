@@ -49,10 +49,10 @@ const I18N = {
     'team.3.t':'Proveedores','team.3.d':'Materiales, equipos y servicios — hablemos.',
     'ct.eyebrow':'Construyamos','ct.title':'Cuéntanos sobre tu proyecto',
     'ct.sub':'Envíanos algunos detalles y te respondemos con los próximos pasos y un presupuesto gratis.',
-    'ct.office':'Oficina principal','ct.estimates':'Presupuestos','ct.projects':'Proyectos nuevos','ct.billing':'Facturación',
+    'ct.email':'Escríbenos','ct.office':'Oficina principal','ct.estimates':'Presupuestos','ct.projects':'Proyectos nuevos','ct.billing':'Facturación',
     'f.name':'Nombre','f.phone':'Teléfono','f.email':'Correo','f.type':'Tipo de proyecto','f.other':'Otro',
     'f.msg':'Cuéntanos sobre tu proyecto','f.send':'Solicitar presupuesto',
-    'f.note':'Abre tu app de correo, dirigido a estimates@majorbuildco.com. ¿Tienes planos? Adjúntalos a ese correo.',
+    'f.note':'Abre tu app de correo, dirigido a ruben@majorbuildco.com. ¿Tienes planos? Adjúntalos a ese correo.',
     'f.loc':'Ubicación del proyecto (ciudad)','f.size':'Tamaño aprox. (sq ft)','f.start':'¿Cuándo quieres empezar?','f.budget':'Presupuesto estimado',
     'f.s1':'Lo antes posible','f.s2':'En 1–3 meses','f.s3':'En 3–6 meses','f.s4':'En 6+ meses','f.s5':'Solo estoy planeando','f.b0':'Aún no sé',
     'foot.tag':'Construyendo hoy un mañana mejor.',
@@ -140,7 +140,7 @@ $('#form').addEventListener('submit', e => {
   if (!ok) return;
   const subject = `Estimate request — ${d.type} — ${d.name}`;
   const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nProject type: ${d.type}\nLocation: ${d.loc}\nApprox. size: ${d.size} sq ft\nDesired start: ${d.start}\nBudget: ${d.budget}\n\n${d.msg}\n\n(Plans attached: yes / no)`;
-  location.href = `mailto:estimates@majorbuildco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  location.href = `mailto:ruben@majorbuildco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
 // botón subir
