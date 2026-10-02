@@ -52,7 +52,7 @@ const I18N = {
     'ct.email':'Escríbenos','ct.office':'Oficina principal','ct.estimates':'Presupuestos','ct.projects':'Proyectos nuevos','ct.billing':'Facturación',
     'f.name':'Nombre','f.phone':'Teléfono','f.email':'Correo','f.type':'Tipo de proyecto','f.other':'Otro',
     'f.msg':'Cuéntanos sobre tu proyecto','f.send':'Solicitar presupuesto',
-    'f.note':'Abre tu app de correo, dirigido a ruben@majorbuildco.com. ¿Tienes planos? Adjúntalos a ese correo.',
+    'f.note':'Tu solicitud llega directo a nuestro equipo. ¿Tienes planos? Envíalos a ruben@majorbuildco.com.',
     'f.loc':'Ubicación del proyecto (ciudad)','f.size':'Tamaño aprox. (sq ft)','f.start':'¿Cuándo quieres empezar?','f.budget':'Presupuesto estimado',
     'f.s1':'Lo antes posible','f.s2':'En 1–3 meses','f.s3':'En 3–6 meses','f.s4':'En 6+ meses','f.s5':'Solo estoy planeando','f.b0':'Aún no sé',
     'foot.tag':'Construyendo hoy un mañana mejor.',
@@ -131,16 +131,38 @@ $$('a', menu).forEach(a => a.addEventListener('click', () => { menu.classList.re
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
 $$('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(el); });
 
-// formulario -> mailto
-$('#form').addEventListener('submit', e => {
+// formulario -> FormSubmit (envía directo al correo de Rubén, sin abrir apps)
+const MSG = {
+  en: { sending: 'Sending…', ok: 'Thank you! Your request was sent. We will get back to you soon.', err: 'Something went wrong. Please email us at ruben@majorbuildco.com.' },
+  es: { sending: 'Enviando…', ok: '¡Gracias! Tu solicitud fue enviada. Te contactaremos pronto.', err: 'Algo salió mal. Escríbenos a ruben@majorbuildco.com.' },
+};
+$('#form').addEventListener('submit', async e => {
   e.preventDefault();
-  const f = e.target, d = Object.fromEntries(new FormData(f));
+  const f = e.target, d = Object.fromEntries(new FormData(f)), btn = $('#sendBtn'), st = $('#formStatus');
   let ok = true;
   ['name', 'email'].forEach(n => { const bad = !d[n] || (n === 'email' && !/\S+@\S+\.\S+/.test(d[n])); f[n].classList.toggle('err', bad); if (bad) ok = false; });
-  if (!ok) return;
-  const subject = `Estimate request — ${d.type} — ${d.name}`;
-  const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nProject type: ${d.type}\nLocation: ${d.loc}\nApprox. size: ${d.size} sq ft\nDesired start: ${d.start}\nBudget: ${d.budget}\n\n${d.msg}\n\n(Plans attached: yes / no)`;
-  location.href = `mailto:ruben@majorbuildco.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  if (!ok) { f.querySelector('.err').focus(); return; }
+  if (d._honey) return;
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = MSG[lang].sending; st.className = 'form__status'; st.textContent = '';
+  try {
+    const r = await fetch('https://formsubmit.co/ajax/ruben@majorbuildco.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: `Estimate request — ${d.type} — ${d.name}`, _template: 'table', _replyto: d.email, _captcha: 'false',
+        Name: d.name, Email: d.email, Phone: d.phone, 'Project type': d.type, Location: d.loc,
+        'Approx. size (sq ft)': d.size, 'Desired start': d.start, Budget: d.budget, Message: d.msg, Language: lang.toUpperCase(),
+      }),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || String(j.success) === 'false') throw new Error(j.message || r.status);
+    st.classList.add('ok'); st.textContent = MSG[lang].ok; f.reset();
+  } catch (err) {
+    st.classList.add('bad'); st.textContent = MSG[lang].err;
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
 });
 
 // botón subir

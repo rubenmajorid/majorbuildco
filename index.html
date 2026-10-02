@@ -245,8 +245,10 @@
         </label>
       </div>
       <label><span data-i18n="f.msg">Tell us about your project</span><textarea name="msg" rows="4"></textarea></label>
-      <button class="btn btn--gold btn--full" type="submit" data-i18n="f.send">Request my estimate</button>
-      <p class="form__note" data-i18n="f.note">Opens your email app, addressed to ruben@majorbuildco.com. Have plans or drawings? Attach them to that email.</p>
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn--gold btn--full" type="submit" id="sendBtn" data-i18n="f.send">Request my estimate</button>
+      <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+      <p class="form__note" data-i18n="f.note">Your request goes straight to our team. Have plans or drawings? Email them to ruben@majorbuildco.com.</p>
     </form>
   </div>
 </section>

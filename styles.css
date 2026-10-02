@@ -161,6 +161,11 @@ h3{font-size:1.6rem;font-weight:700}
 .form select option{background:var(--ink-2)}
 .form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:var(--gold);background:rgba(255,255,255,.08)}
 .form .err{border-color:#e0645a}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form__status{font-size:.95rem;text-align:center;min-height:0}
+.form__status.ok{color:#7fd18b}
+.form__status.bad{color:#f08a80}
+.btn:disabled{opacity:.7;cursor:wait}
 .form__note{font-size:.8rem;color:var(--muted);text-align:center}
 
 /* footer */
