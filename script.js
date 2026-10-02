@@ -49,7 +49,7 @@ const I18N = {
     'team.3.t':'Proveedores','team.3.d':'Materiales, equipos y servicios — hablemos.',
     'ct.eyebrow':'Construyamos','ct.title':'Cuéntanos sobre tu proyecto',
     'ct.sub':'Envíanos algunos detalles y te respondemos con los próximos pasos y un presupuesto gratis.',
-    'ct.email':'Escríbenos','ct.office':'Oficina principal','ct.estimates':'Presupuestos','ct.projects':'Proyectos nuevos','ct.billing':'Facturación',
+    'ct.call':'Llama o escríbenos','ct.email':'Correo','ct.office':'Oficina principal','ct.estimates':'Presupuestos','ct.projects':'Proyectos nuevos','ct.billing':'Facturación',
     'f.name':'Nombre','f.phone':'Teléfono','f.email':'Correo','f.type':'Tipo de proyecto','f.other':'Otro',
     'f.msg':'Cuéntanos sobre tu proyecto','f.send':'Solicitar presupuesto',
     'f.note':'Tu solicitud llega directo a nuestro equipo. ¿Tienes planos? Envíalos a ruben@majorbuildco.com.',
