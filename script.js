@@ -146,7 +146,7 @@ $('#form').addEventListener('submit', async e => {
   const label = btn.textContent;
   btn.disabled = true; btn.textContent = MSG[lang].sending; st.className = 'form__status'; st.textContent = '';
   try {
-    const r = await fetch('https://formsubmit.co/ajax/ruben@majorbuildco.com', {
+    const r = await fetch('https://formsubmit.co/ajax/50be4180a2143bd8e31bdef7998dfcba', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
